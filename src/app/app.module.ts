@@ -15,10 +15,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
+import { ListEmpleadoComponent } from './components/list-empleado/list-empleado.component';
+import { FormEmpleadoComponent } from './components/form-empleado/form-empleado.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListEmpleadoComponent,
+    FormEmpleadoComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

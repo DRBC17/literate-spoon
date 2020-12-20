@@ -1,0 +1,55 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <span class="h3  m-2">Listado de empleados</span>
+            <button class="btn btn-dark btn-lg float-end m-2" [routerLink]="['/create-empleado']"
+                routerLinkActive="router-link-active">
+                Agregar
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="d-flex align-items-center alert alert-warning mt-5" *ngIf="loading">
+                <strong>Cargando empleados...</strong>
+                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+            </div>
+            <ng-container *ngIf="empleados.length > 0; else elseEmpleados">
+                <div class="table-responsive">
+                    <table class="table table-striped mt-5">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Documento</th>
+                                <th>Salario</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let empleado of empleados">
+                                <td>{{ empleado.nombre }}</td>
+                                <td>{{ empleado.apellido }}</td>
+                                <td>{{ empleado.documento }}</td>
+                                <td>{{ empleado.salario | currency:'L' }}</td>
+                                <td>
+                                    <button class="btn btn-outline-info m-1"
+                                        [routerLink]="['/edit-empleado/', empleado.id]">
+                                        <i class="fas fa-pencil-alt fa-lg "></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger m-1" (click)="eliminarEmpleado(empleado.id)">
+                                        <i class="fas fa-trash fa-lg"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </ng-container>
+            <ng-template #elseEmpleados>
+                <div *ngIf="!loading" class="alert alert-warning mt-5" role="alert">
+                    No hay empleados que mostrar
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
